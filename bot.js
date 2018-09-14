@@ -4,12 +4,14 @@ const PREFIX = ">"; // You can change this Prefix to whatever you want
 var bot = new Discord.Client(); 
 
 // Events
+
 bot.on("ready", function() { 
     bot.user.setGame("Hi, im new Bot on Discord!"); 
     console.log(`${bot.user.username} Sedang ONLINE!`); 
 });
 
 // Definer
+
 bot.on("message", function(message) { 
 
     if (message.author.bot) return; 
@@ -22,6 +24,7 @@ bot.on("message", function(message) {
     var command = args[0].toLowerCase(); 
 
 // Commands
+	
     if (command == "help") { 
         var embedhelpmember = new Discord.RichEmbed() 
             .setTitle("**💬Daftar Perintah**\n") 
@@ -86,6 +89,8 @@ bot.on("message", function(message) {
         message.guild.member(kUser).kick(kReason); 
         adminlog.send(kickEmbed); 
     }; 
-
+	
+// Bot Login
+	
 });
 bot.login(process.env.BOT_TOKEN); 

@@ -89,4 +89,4 @@ bot.on("message", function(message) {
 });
 
 // Bot Login.
-bot.login('yourawesometoken'); // Change this into your Bot Token in App Settings.
+bot.login(process.env.BOT_TOKEN); // bot.login('YourBotAwesomeToken');

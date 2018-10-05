@@ -1,5 +1,5 @@
 const Discord = require("discord.js"); // We Call The Packages.
-const PREFIX = ">"; // You can change this Prefix to whatever you want.
+const PREFIX = "<"; // You can change this Prefix to whatever you want.
 
 var bot = new Discord.Client();
 

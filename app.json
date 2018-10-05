@@ -19,12 +19,6 @@
       "value": ""
     }
   },
-  "formation": {
-    "web": {
-      "quantity": 2,
-      "size": "Performance-M"
-    }
-  },
   "environments": {
     "test": {
       "scripts": {

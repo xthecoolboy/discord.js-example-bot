@@ -10,20 +10,10 @@
   "repository": "https://github.com/fschxspam/discord.js-example-bot",
   "logo": "https://discord.js.org/static/logo-square.png",
   "success_url": "/welcome",
-  "scripts": {
-    "postdeploy": "Bundle Exec Rake Bootstrap"
-  },
   "env": {
     "BOT_TOKEN": {
       "description": "A Secret Bot Token, Used To Login The BOT. Get The Token In Your App Settings",
       "value": ""
     }
   },
-  "environments": {
-    "test": {
-      "scripts": {
-        "test": "Bundle Exec Rake Test"
-      }
-    }
-  }
 }

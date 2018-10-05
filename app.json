@@ -5,10 +5,14 @@
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": ["node", "heroku", "discord"]
  },
- "env": {
+  "env": {
     "BOT_TOKEN": {
-      "description": "A Secret Bot Token, Used To Login The BOT.",
-      "generator": "bot"
+      "description": "A Secret Bot Token, Used To Login The Bot.",
+      "generator": "token"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The Token of processes to run.",
+      "value": "5"
     }
   }
 }

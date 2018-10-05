@@ -1,96 +1,92 @@
-const Discord = require("discord.js"); // We call the Packages
-const PREFIX = ">"; // You can change this Prefix to whatever you want
+const Discord = require("discord.js"); // We Call The Packages.
+const PREFIX = ">"; // You can change this Prefix to whatever you want.
 
-var bot = new Discord.Client(); 
+var bot = new Discord.Client();
 
-// Events
-
-bot.on("ready", function() { 
-    bot.user.setGame("Hi, im new Bot on Discord!"); 
-    console.log(`${bot.user.username} Sedang ONLINE!`); 
+// Events.
+bot.on("ready", function() {
+    bot.user.setGame("Hi, im new Bot on Discord!");
+    console.log(`${bot.user.username} is Ready!`);
 });
 
-// Definer
+bot.on("message", function(message) {
 
-bot.on("message", function(message) { 
+    if (message.author.bot) return;
 
-    if (message.author.bot) return; 
-	
-	if (!message.guild) return; 
+	if (!message.guild) return;
 
-    if (!message.content.startsWith(PREFIX)) return; 
+    if (!message.content.startsWith(PREFIX)) return;
     
-    var args = message.content.substring(PREFIX.length).split(" "); 
-    var command = args[0].toLowerCase(); 
+    var args = message.content.substring(PREFIX.length).split(" ");
+    var command = args[0].toLowerCase();
 
-// Commands
-	
-    if (command == "help") { 
-        var embedhelpmember = new Discord.RichEmbed() 
-            .setTitle("**💬Daftar Perintah**\n") 
-            .addField(" - avatar", "Menampilkan Foto Profil Kamu.") 
-            .addField(" - ping", "Nanti Akan Dijawab PONG.") 
-            .setColor(0x36FF00) 
-            .setFooter("Ⓒ 2018 Example Bot."); 
-        var embedhelpadmin = new Discord.RichEmbed() 
-            .setTitle("**💬Daftar Perintah Khusus Moderator**\n")
-            .addField(" - prune", "Hapus Hingga `99` Obrolan. (>prune [1 - 99])") 
-            .addField(" - kick", "Kick Seseorang Dari Server. (>kick @username [alasan])") 
-            .setColor(0x00FFEE) 
+// Commands.
+    if (command == "help") {
+        var embedhelpmember = new Discord.RichEmbed()
+            .setTitle("**💬 Command List.**\n")
+            .addField(" - avatar", "Show your Avatar.")
+            .addField(" - ping", "PING PONG.")
+            .setColor(0x00FFEE)
             .setFooter("Ⓒ 2018 Example Bot.");
-            message.delete() 
+        var embedhelpadmin = new Discord.RichEmbed()
+            .setTitle("**💬 Moderator Commands.**\n")
+            .addField(" - prune", "Prune up to `99` Messages.")
+            .addField(" - kick", "Kick someone from your Server.")
+            .setColor(0x00FFEE)
+            .setFooter("Ⓒ 2018 Example Bot.");
+            message.delete()
             message.channel.send(embedhelpmember)
-        if(message.member.hasPermission('MANAGE_MESSAGES')) return message.author.sendMessage(embedhelpadmin); 
+        if(message.member.hasPermission('MANAGE_MESSAGES')) return message.author.sendMessage(embedhelpadmin);
     };
 
-    if (command == "avatar") { 
-        message.channel.send({ 
-               embed: { 
-                  title: `Foto Profil ${message.author.displayAvatarURL}`, 
-                  image: { 
-                      url: message.author.AvatarURL 
-                  }, 
-                  color: 0xFFFFFF 
-               } 
-        }) 
-    }; 
-
-    if (command == "ping") { 
-        message.channel.send("**:ping_pong:Pong!**"); 
+    if (command == "avatar") {
+        message.channel.send({
+               embed: {
+                  title: `${message.author.displayAvatarURL}'s Profile Picture.`,
+                  image: {
+                      url: message.author.AvatarURL
+                  },
+                  color: 0x00FFEE
+               }
+        })
     };
 
-    if(command === "prune") { 
-        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("**🔒 Maaf, kamu tidak memiliki Izin untuk melakukan ini!**"); 
-        var messagesToDelete = args[1]; 
-        if (!args[1]) return message.reply("Berapa banyak jumlah pesan yang ingin kamu **Hapus**?"); 
-        if (args[1] > 99) return message.reply("Maksimal jumlah pesan yang dapat kamu **Hapus** adalah `99`."); 
-        message.channel.fetchMessages({limit: messagesToDelete}) 
-        .then(messages => message.channel.bulkDelete(messages.size + 1)) 
-        .catch(error => message.channel.send(`❌ Maaf ${message.author}, Gagal meng**hapus** karena: **${error}**.`)); 
+    if (command == "ping") {
+        message.channel.send("**:ping_pong: Pong!**");
     };
 
-    if(command == "kick") { 
-        message.delete() 
-        let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0])); 
-        if(!kUser) return message.channel.send("❌ Mohon **@mention** orang yang kamu tuju!"); 
-        let kReason = args.join(" ").slice(0); 
-        if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("**🔒 Maaf, kamu tidak memiliki Izin untuk melakukan ini!**"); 
-        if(kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("❌ Gagal **Kick**, *membutuhkan Role lebih tinggi darinya, serta Izin yang tepat*."); 
+    if(command === "prune") {
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("**🔒 Sorry, you can't do that.**");
+        var messagesToDelete = args[1];
+        if (!args[1]) return message.channel.send("❌ Please include the amount of Message that you want to **Prune**!");
+        if (args[1] > 99) return message.channel.send("❌ I can't **Prune** more than `99` Messages.");
+        message.channel.fetchMessages({limit: messagesToDelete})
+        .then(messages => message.channel.bulkDelete(messages.size + 1))
+        .catch(error => message.channel.send(`❌ Sorry ${message.author}, Failed while **Prunning** because: *${error}*.`));
+    };
+
+    if(command == "kick") {
+        message.delete()
+        let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        if(!kUser) return message.channel.send("❌ Please **@mention** your target!");
+        let kReason = args.join(" ").slice(0);
+        if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("**🔒 Sorry, you can't do that.**");
+        if(kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("❌ Failed to **Kick**, need a higher than Roles.");
     
-        let kickEmbed = new Discord.RichEmbed() 
-        .setDescription("**👢 Kicked**") 
-        .setColor(0xFF6767) 
-        .addField("Pengguna", `${kUser}`) 
-        .addField("Moderator", `<@${message.author.id}>`) 
-        .addField("Reason", kReason); 
+        let kickEmbed = new Discord.RichEmbed()
+        .setDescription("**👢 Kicked**")
+        .setColor(0xFF0000)
+        .addField("User", `${kUser}`)
+        .addField("Moderator", `<@${message.author.id}>`)
+        .addField("Reason", kReason);
     
-        let adminlog = message.guild.channels.find(`name`, "mod-logs"); 
-        if(!adminlog) return message.channel.send("❌ Channel **#mod-logs** tidak ditemukan."); 
-        message.guild.member(kUser).kick(kReason); 
-        adminlog.send(kickEmbed); 
-    }; 
-	
-// Bot Login
-	
+        let adminlog = message.guild.channels.find(`name`, "mod-logs");
+        if(!adminlog) return message.channel.send("❌ Sorry, i need the Logging Channels with name **#mod-logs**.");
+        message.guild.member(kUser).kick(kReason);
+        adminlog.send(kickEmbed);
+    };
+
 });
-bot.login('yourawesometoken'); // Change this to your Bot Token in App Settings
+
+// Bot Login.
+bot.login('yourawesometoken'); // Change this into your Bot Token in App Settings.

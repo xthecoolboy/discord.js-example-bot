@@ -1,0 +1,14 @@
+{
+  "name": "Discord.js Example Bot",
+  "description": "A Discord.js Example Bot's Repository",
+  "repository": "https://github.com/fschxspam/discord.js-example-bot",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "heroku", "discord"]
+ },
+ "env": {
+    "BOT_TOKEN": {
+      "description": "A Secret Bot Token, Used To Login The BOT.",
+      "generator": "bot"
+    }
+  }
+}

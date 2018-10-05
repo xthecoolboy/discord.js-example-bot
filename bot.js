@@ -36,7 +36,7 @@ bot.on("message", function(message) {
             .setFooter("Ⓒ 2018 Example Bot.");
             message.delete()
             message.channel.send(embedhelpmember)
-        if(message.member.hasPermission('MANAGE_MESSAGES')) return message.author.sendMessage(embedhelpadmin);
+        if(message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(embedhelpadmin);
     };
 
     if (command == "avatar") {

@@ -1,27 +1,23 @@
 {
-  "name": "Small Sharp Tool",
-  "description": "This app does one little thing, and does it well.",
+  "name": "Discord.js Example Bot",
+  "description": "Example Bot For Discord, Using Discord.js Library.",
   "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
+    "node",
+    "heroku",
+    "discord"
   ],
   "website": "https://small-sharp-tool.com/",
   "repository": "https://github.com/fschxspam/discord.js-example-bot",
-  "logo": "https://small-sharp-tool.com/logo.svg",
+  "logo": "https://discord.js.org/static/logo-square.png",
   "success_url": "/welcome",
   "scripts": {
-    "postdeploy": "bundle exec rake bootstrap"
+    "postdeploy": "Bundle Exec Rake Bootstrap"
   },
   "env": {
-    "SECRET_TOKEN": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
+    "BOT_TOKEN": {
+      "description": "A Secret Bot Token, Used To Login The BOT. Get The Token In Your App Settings",
+      "value": "NDAYourAwesomeBotToken"
     },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "5"
-    }
   },
   "formation": {
     "web": {
@@ -29,20 +25,6 @@
       "size": "Performance-M"
     }
   },
-  "image": "heroku/ruby",
-  "addons": [
-    "openredis",
-    {
-      "plan": "mongolab:shared-single-small",
-      "as": "MONGO"
-    },
-    {
-      "plan": "heroku-postgresql",
-      "options": {
-        "version": "9.5"
-      }
-    }
-  ],
   "buildpacks": [
     {
       "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
@@ -51,7 +33,7 @@
   "environments": {
     "test": {
       "scripts": {
-        "test": "bundle exec rake test"
+        "test": "Bundle Exec Rake Test"
       }
     }
   }

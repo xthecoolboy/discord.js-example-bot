@@ -6,7 +6,7 @@ var bot = new Discord.Client();
 
 // Events.
 bot.on("ready", function() {
-    bot.user.setGame(`Type ${PREFIX}help For Commands List!`);
+    bot.user.setGame(`Hi, Im New Bot On Discord!`);
     console.log(`${bot.user.username} is Ready!`);
 });
 
@@ -53,7 +53,7 @@ bot.on("message", function(message) {
     };
 
     if (command == "ping") {
-        message.channel.send("**:ping_pong: Pong!**");
+        message.channel.send("**:ping_pong: PONG!**");
     };
 
     if(command === "prune") {

@@ -12,6 +12,6 @@ You can host this on Heroku, just click this **Deploy** button below :
 </a>
 
 
-1. Input your **Bot Token**. Get your Bot's Token in your App Settings.
+1. Input your **Bot Token**, and Input your Bot **Prefixes**. Get your Bot's Token in your App Settings.
 2. After *Deployed*, Go to **Overview** Tabs >  **Configure Dynos** > Enable **worker** Dynos > Click **Confirm**
 and you Ready to Go!

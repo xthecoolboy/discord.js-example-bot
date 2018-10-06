@@ -1,5 +1,6 @@
 const Discord = require("discord.js"); // We Call The Packages.
-const PREFIX = process.env.PREFIX; // const PREFIX = "<"; // You can change this Prefix to whatever you want.
+// const PREFIX = "<"; // You can change this Prefix to whatever you want.
+const PREFIX = process.env.PREFIX;
 
 var bot = new Discord.Client();
 

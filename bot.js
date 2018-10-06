@@ -1,11 +1,11 @@
 const Discord = require("discord.js"); // We Call The Packages.
-const PREFIX = "<"; // You can change this Prefix to whatever you want.
+const PREFIX = process.env.PREFIX; // const PREFIX = "<"; // You can change this Prefix to whatever you want.
 
 var bot = new Discord.Client();
 
 // Events.
 bot.on("ready", function() {
-    bot.user.setGame("Type <help!");
+    bot.user.setGame(`Type ${PREFIX}help For Commands List!`);
     console.log(`${bot.user.username} is Ready!`);
 });
 
@@ -13,7 +13,7 @@ bot.on("message", function(message) {
 
     if (message.author.bot) return;
 
-	if (!message.guild) return;
+    if (!message.guild) return;
 
     if (!message.content.startsWith(PREFIX)) return;
     

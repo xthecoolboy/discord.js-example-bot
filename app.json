@@ -18,7 +18,8 @@
     "PREFIX": {
       "description": "A Prefix To Run Your Bot Commands.",
       "value": ""
-  },
+    },
+  }
   "buildpacks": [
     {
       "url": "heroku/nodejs"

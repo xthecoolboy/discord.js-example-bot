@@ -1,13 +1,13 @@
 {
   "name": "discord.js-example-bot",
   "version": "1.0.0",
-  "description": "Example Bot by ForceStop!",
+  "description": "Example Bot by zarrttt_",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bot.js"
   },
-  "author": "forcestop",
-  "license": "ISC",
+  "author": "zarrttt_",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^11.3.2",
     "node-fetch": "^2.1.1"

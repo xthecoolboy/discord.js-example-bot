@@ -24,28 +24,28 @@ bot.on("message", function(message) {
 // Commands.
     if (command == "help") {
         var embedhelpmember = new Discord.RichEmbed()
-            .setTitle("**💬 Command List.**\n")
+            .setAuthor("💬 Command List.")
             .addField(" - avatar", "Show your Avatar.")
             .addField(" - ping", "PING PONG.")
             .setColor(0x00FFEE)
-            .setFooter("Ⓒ 2018 Example Bot.");
+            .setFooter("Ⓒ 2018 Example Bot.", bot.user.displayAvatarURL);
         var embedhelpadmin = new Discord.RichEmbed()
-            .setTitle("**💬 Moderator Commands.**\n")
+            .setAuthor("💬 Moderator Commands.")
             .addField(" - prune", "Prune up to `99` Messages.")
             .addField(" - kick", "Kick someone from your Server.")
             .setColor(0x00FFEE)
-            .setFooter("Ⓒ 2018 Example Bot.");
-            message.delete()
+            .setFooter("Ⓒ 2018 Example Bot.", bot.user.displayAvatarURL);
             message.channel.send(embedhelpmember)
         if(message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(embedhelpadmin);
     };
 
     if (command == "avatar") {
+        let member = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
         message.channel.send({
                embed: {
-                  title: `${message.author.displayAvatarURL}'s Profile Picture.`,
+                  title: `${member.displayAvatarURL}'s Profile Picture.`,
                   image: {
-                      url: message.author.AvatarURL
+                      url: member.AvatarURL
                   },
                   color: 0x00FFEE
                }
@@ -79,7 +79,7 @@ bot.on("message", function(message) {
         .setColor(0xFF0000)
         .addField("User", `${kUser}`)
         .addField("Moderator", `<@${message.author.id}>`)
-        .addField("Reason", kReason);
+        .addField("Reason", `**\`\`\`${kReason}\`\`\`**`);
     
         let adminlog = message.guild.channels.find(`name`, "mod-logs");
         if(!adminlog) return message.channel.send("❌ Sorry, i need the Logging Channels with name **#mod-logs**.");
@@ -90,4 +90,5 @@ bot.on("message", function(message) {
 });
 
 // Bot Login.
-bot.login(process.env.BOT_TOKEN); // bot.login('YourBotAwesomeToken');
+// bot.login('YourAwesomeBotToken');
+bot.login(process.env.BOT_TOKEN);
